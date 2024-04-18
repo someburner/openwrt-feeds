@@ -9,12 +9,16 @@
 
 2. Add feed to `feeds.conf.default`
 
+```
+src-git someburner https://github.com/someburner/openwrt-feeds.git
+```
+
 3. Update feeds
 
 ```sh
 ./scripts/feeds update -a
-./scripts/feeds install silversearcher-ag
 ./scripts/feeds install mqtt-dissector
+./scripts/feeds install silversearcher-ag
 ```
 
 4. Select packages in menuconfig
@@ -23,14 +27,14 @@
 make menuconfig
 
 # > Custom Apps
-# --> silversearcher-ag
 # --> mqtt-dissector
+# --> silversearcher-ag
 # hit space to choose <M>
 ```
 
 5. Compile
 
 ```sh
-make package/silversearcher-ag/{clean,compile} V=s
 make package/mqtt-dissector/{clean,compile} V=s
+make package/silversearcher-ag/{clean,compile} V=s
 ```
