@@ -1,0 +1,28 @@
+From f345775c5e73ef07ed373fa2f6c7062819b1991e Mon Sep 17 00:00:00 2001
+From: Jeff H <jeffrey92@gmail.com>
+Date: Thu, 18 Apr 2024 12:58:38 -0700
+Subject: [PATCH] dont throw on empty iface
+
+---
+ src/network_interface.cpp | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/src/network_interface.cpp b/src/network_interface.cpp
+index c1ac25b6..2a664aee 100644
+--- a/src/network_interface.cpp
++++ b/src/network_interface.cpp
+@@ -347,9 +347,11 @@ NetworkInterface::Info NetworkInterface::info() const {
+     #endif // _WIN32
+     
+      // If we didn't even get the hw address or ip address, this went wrong
+-    if (!collector.found_hw && !collector.found_ip) {
+-        throw invalid_interface();
+-    }
++    // Should this really return an exception?
++    // On Openwrt device with netem, an empty interface is created for sch_teql
++    // if (!collector.found_hw && !collector.found_ip) {
++    //     throw invalid_interface();
++    // }
+ 
+     return info;
+ }
