@@ -25,7 +25,7 @@ define Package/mqtt-dissector
   SECTION:=net
   CATEGORY:=Custom Apps
   TITLE:=mqtt-dissector
-  DEPENDS:=+libstdcpp +libpcap +libtins
+  DEPENDS:=+libstdcpp +libpcap +libtins45
   PKG_BUILD_DEPENDS:=libpcap libtins boost
 endef
 
